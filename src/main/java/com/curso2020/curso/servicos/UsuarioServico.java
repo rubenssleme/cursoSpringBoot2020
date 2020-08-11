@@ -8,19 +8,24 @@ import org.springframework.stereotype.Service;
 
 import com.curso2020.curso.entidades.Usuario;
 import com.curso2020.curso.repositorios.UsuarioRepositorio;
+
 @Service
 public class UsuarioServico {
 
 	@Autowired
-	private UsuarioRepositorio  usuarioRepositorio;
-	
-	public List<Usuario> findAll(){
+	private UsuarioRepositorio usuarioRepositorio;
+
+	public List<Usuario> findAll() {
 		return usuarioRepositorio.findAll();
-		
+
 	}
-	
-	public Usuario findById(Long id ) {
+
+	public Usuario findById(Long id) {
 		Optional<Usuario> obj = usuarioRepositorio.findById(id);
 		return obj.get();
+	}
+
+	public Usuario insert(Usuario obj) {
+		return usuarioRepositorio.save(obj);
 	}
 }
