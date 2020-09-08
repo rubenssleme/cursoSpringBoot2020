@@ -17,7 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "tb_usuario")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,11 +26,11 @@ public class Usuario implements Serializable {
 	private String telefone;
 	private String senha;
 	@JsonIgnore
-	@OneToMany(mappedBy =  "cliente")
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
-	
+
 	public Usuario() {
-		
+
 	}
 
 	public Usuario(Long id, String nome, String email, String telefone, String senha) {
@@ -42,7 +42,6 @@ public class Usuario implements Serializable {
 		this.senha = senha;
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -50,6 +49,7 @@ public class Usuario implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 	public List<Pedido> getPedidos() {
 		return pedidos;
 	}
@@ -110,6 +110,5 @@ public class Usuario implements Serializable {
 			return false;
 		return true;
 	}
-
 
 }

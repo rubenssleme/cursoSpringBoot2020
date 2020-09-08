@@ -37,7 +37,8 @@ public class TesteConfig implements CommandLineRunner {
 		Categoria cat1 = new Categoria(null, "Electronics");
 		Categoria cat2 = new Categoria(null, "Books");
 		Categoria cat3 = new Categoria(null, "Computers");
-		categoriaRepositorio.saveAll(Arrays.asList(cat1, cat2, cat3));
+		Categoria cat4 = new Categoria(null, "Calçados");
+		categoriaRepositorio.saveAll(Arrays.asList(cat1, cat2, cat3, cat4));
 		
 		Produto p1 = new Produto(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, "");
 		Produto p2 = new Produto(null, "Smart TV", "Nulla eu imperdiet purus. Maecenas ante.", 2190.0, "");
