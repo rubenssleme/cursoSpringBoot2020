@@ -22,34 +22,34 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 @Table(name = "tb_pedido")
 public class Pedido implements Serializable {
-	
+
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'",timezone = "GMT")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant momento;
-	
+
 	private Integer pedidoStatus;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Usuario cliente;
-	
+
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<PedidoItem> itens = new HashSet<>();
-	
+
 	@OneToOne(mappedBy = "pedido", cascade = CascadeType.ALL)
 	private Pagamento pagamento;
-	
+
 	public Pedido() {
-		
+
 	}
 
-	public Pedido(Long id, Instant momento,PedidoStatus pedidoStatus, Usuario cliente) {
-		
+	public Pedido(Long id, Instant momento, PedidoStatus pedidoStatus, Usuario cliente) {
+
 		this.id = id;
 		this.momento = momento;
 		setPedidoStatus(pedidoStatus);
@@ -57,12 +57,12 @@ public class Pedido implements Serializable {
 	}
 
 	public PedidoStatus getPedidoStatus() {
-		return  PedidoStatus.valueOf(pedidoStatus);
+		return PedidoStatus.valueOf(pedidoStatus);
 	}
 
 	public void setPedidoStatus(PedidoStatus pedidoStatus) {
-		if(pedidoStatus!= null) {
-		this.pedidoStatus = pedidoStatus.getCode();
+		if (pedidoStatus != null) {
+			this.pedidoStatus = pedidoStatus.getCode();
 		}
 	}
 
@@ -89,7 +89,7 @@ public class Pedido implements Serializable {
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
-			
+
 	public Pagamento getPagamento() {
 		return pagamento;
 	}
@@ -98,10 +98,19 @@ public class Pedido implements Serializable {
 		this.pagamento = pagamento;
 	}
 
-	public Set<PedidoItem>getItens(){
+	public Double getTotal() {
+		Double soma = 0.0;
+		for (PedidoItem x : itens) {
+			soma = soma + x.getSubtotal();
+		}
+
+		return soma;
+	}
+
+	public Set<PedidoItem> getItens() {
 		return itens;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -126,10 +135,5 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
 
 }
