@@ -11,7 +11,7 @@ import com.curso2020.curso.repositorios.UsuarioRepositorio;
 
 @Service
 public class UsuarioServico {
-	//Ajuste Aula já feita.
+	
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 
@@ -27,5 +27,9 @@ public class UsuarioServico {
 
 	public Usuario insert(Usuario obj) {
 		return usuarioRepositorio.save(obj);
+	}
+	
+	public void delete(Long id) {
+		usuarioRepositorio.deleteById(id);;
 	}
 }
