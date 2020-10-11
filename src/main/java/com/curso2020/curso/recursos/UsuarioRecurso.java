@@ -19,7 +19,7 @@ import com.curso2020.curso.servicos.UsuarioServico;
 @RestController
 @RequestMapping(value = "/usuarios")
 public class UsuarioRecurso {
-
+	//Ajuste Aula já feita.
 	@Autowired
 	private UsuarioServico usuarioServico;
 

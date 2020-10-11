@@ -11,7 +11,7 @@ import com.curso2020.curso.repositorios.UsuarioRepositorio;
 
 @Service
 public class UsuarioServico {
-
+	//Ajuste Aula já feita.
 	@Autowired
 	private UsuarioRepositorio usuarioRepositorio;
 
