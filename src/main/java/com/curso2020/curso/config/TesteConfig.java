@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.curso2020.curso.entidades.Categoria;
 import com.curso2020.curso.entidades.Pedido;
+import com.curso2020.curso.entidades.PedidoItem;
 import com.curso2020.curso.entidades.Produto;
 import com.curso2020.curso.entidades.Usuario;
 import com.curso2020.curso.entidades.enums.PedidoStatus;
 import com.curso2020.curso.repositorios.CategoriaRepositorio;
+import com.curso2020.curso.repositorios.PedidoItemRepositorio;
 import com.curso2020.curso.repositorios.PedidoRepositorio;
 import com.curso2020.curso.repositorios.ProdutoRepositorio;
 import com.curso2020.curso.repositorios.UsuarioRepositorio;
@@ -26,6 +28,8 @@ public class TesteConfig implements CommandLineRunner {
 	private UsuarioRepositorio usuarioRepositorio;
 	@Autowired
 	private PedidoRepositorio pedidoRepositorio;
+	@Autowired
+	private PedidoItemRepositorio pedidoItemRepositorio;
 	@Autowired
 	private CategoriaRepositorio categoriaRepositorio;
 	@Autowired
@@ -64,6 +68,13 @@ public class TesteConfig implements CommandLineRunner {
 		Pedido pe2 = new Pedido(null, Instant.parse("2019-07-21T03:42:10Z"), PedidoStatus.ENTREGUE, u2);
 		Pedido pe3 = new Pedido(null, Instant.parse("2019-07-22T15:21:22Z"), PedidoStatus.ENVIADO, u1);
 		pedidoRepositorio.saveAll(Arrays.asList(pe1, pe2, pe3));
+		
+		PedidoItem pi1 = new PedidoItem(pe1, p1, 2, p1.getPreco());
+		PedidoItem pi2 = new PedidoItem(pe1, p3, 1, p3.getPreco());
+		PedidoItem pi3 = new PedidoItem(pe2, p3, 2, p3.getPreco());
+		PedidoItem pi4 = new PedidoItem(pe3, p5, 2, p5.getPreco());
+		
+		pedidoItemRepositorio.saveAll(Arrays.asList(pi1,pi2,pi3,pi4));
 
 	}
 }

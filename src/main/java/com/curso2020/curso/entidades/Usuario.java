@@ -1,4 +1,4 @@
-package com.curso2020.curso.entidades;
+ package com.curso2020.curso.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
